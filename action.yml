@@ -1,0 +1,12 @@
+name: 'Publish Fact'
+description: 'Download the latest unused fact from github issues and make a new page for it'
+inputs:
+  issue_id:  # id of input
+    description: 'publish a specific id'
+    required: false
+outputs:
+  message: # id of output
+    description: 'The response message'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
