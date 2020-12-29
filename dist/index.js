@@ -25,14 +25,15 @@ run()
 async function run() {
 
   const specific_issue_id_to_publish = core.getInput('issue_id');
+  const token = core.getInput('API_TOKEN');
   console.log(`Will publish: ${specific_issue_id_to_publish ? specific_issue_id_to_publish : 'first best'}!`);
   
   // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
+  const payload = JSON.stringify(githubAPI.context.payload, undefined, 2)
   console.log(`The event payload: ${payload}`);
 
 
-  let {client, repo} = await login('4c58313d57e45d7da807a8efa09af2965e0e5bd8', 'potmo/fact-a-day');
+  let {client, repo} = await login(token, 'potmo/fact-a-day');
   
   let current_issues = await getCurrentIssues(client, repo);
 
